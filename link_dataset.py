@@ -12,13 +12,13 @@ if __name__=="__main__":
         exit()
     shutil.copytree(args.path, "data", copy_function=os.link)
 
-
-    """
-    for path, subdirs, files in os.walk(args.path):
-        for file in files:
-            src = os.path.join(path, file)
-            print(src)
-            dst = src.replace(args.path, "")
-            dst = os.path.join("data", dst)
-            shutil.copytree(src, dst, copy_function=os.link)
-    """
+    with open(os.path.join(args.output, ".gitignore"), "w") as f:
+        f.write("group_*/calibration\n")
+        f.write("group_*/heatmaps\n")
+        f.write("group_*/jai/annotated\n")
+        f.write("group_*/jai/rgb\n")
+        f.write("group_*/logs\n")
+        f.write("group_*/rs\n")
+        f.write("group_*/README.txt\n")
+        f.write("dummy_with_screencasts\n")
+        f.write("setup_images")
